@@ -1,0 +1,19 @@
+version: "3"
+services: 
+  manager:
+    build: 
+      context: "./manager"
+      dockerfile: "dockerfile"
+    depends_on:
+      - "db"
+    environment:
+      CSV_FILENAME: "data"
+    ports: 
+      - 2000:5432
+  db : 
+    image: "postgres"
+    environment: 
+      POSTGRES_PASSWORD: "secret"
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "persons"
+    
